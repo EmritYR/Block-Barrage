@@ -67,40 +67,6 @@ public class Player {
                 if (x + SPEED >= dimension.width)
                     x = dimension.width - SPEED;
                 break;
-
-            // TODO: Add 8 Directional Movement
-            case "UP-LEFT":
-                y = y - SPEED;
-                x = x - SPEED;
-                if (x < 0)
-                    x = 0;
-                if (y < 0)
-                    y = 0;
-                break;
-            case "DOWN-LEFT":
-                y = y + SPEED;
-                x = x - SPEED;
-                if (x < 0)
-                    x = 0;
-                if (y + SPEED >= dimension.height)
-                    y = dimension.height - SPEED;
-                break;
-            case "UP-RIGHT":
-                y = y - SPEED;
-                x = x + SPEED;
-                if (x + SPEED >= dimension.width)
-                    x = dimension.width - SPEED;
-                if (y < 0)
-                    y = 0;
-                break;
-            case "DOWN-RIGHT":
-                y = y + SPEED;
-                x = x + SPEED;
-                if (x + SPEED >= dimension.width)
-                    x = dimension.width - SPEED;
-                if (y + SPEED >= dimension.height)
-                    y = dimension.height - SPEED;
-                break;
         }
 
     }
