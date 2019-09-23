@@ -42,19 +42,19 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         switch (keyCode){
 			case KeyEvent.VK_LEFT:
 			case KeyEvent.VK_A :
-				player.moveLeft();
+				player.move("LEFT");
 				break;
 			case KeyEvent.VK_RIGHT:
 			case KeyEvent.VK_D :
-				player.moveRight();
+				player.move("RIGHT");
 				break;
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_W :
-				player.moveUp();
+				player.move("UP");
 				break;
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_S :
-				player.moveDown();
+				player.move("DOWN");
 				break;
 		}
     }

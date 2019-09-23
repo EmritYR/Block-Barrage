@@ -42,42 +42,6 @@ public class Player {
         return new Rectangle2D.Double(x, y, SIDE_SIZE, SIDE_SIZE);
     }
 
-    public void moveLeft() {
-        if (!panel.isVisible()) return;
-        erase();
-        x = x - SPEED;
-        if (x < 0) {
-            x = 0;
-        }
-    }
-
-    public void moveRight() {
-        if (!panel.isVisible()) return;
-        erase();
-        x = x + SPEED;
-        if (x + SPEED >= dimension.width) {
-            x = dimension.width - SPEED;
-        }
-    }
-
-    public void moveUp() {
-        if (!panel.isVisible()) return;
-        erase();
-        y = y - SPEED;
-        if (y < 0) {
-            y = 0;
-        }
-    }
-
-    public void moveDown() {
-        if (!panel.isVisible()) return;
-        erase();
-        y = y + SPEED;
-        if (y + SPEED >= dimension.height) {
-            y = dimension.height - SPEED;
-        }
-    }
-
     public void move(String direction) {
         if (!panel.isVisible()) return;
         erase();
@@ -103,6 +67,7 @@ public class Player {
                 if (x + SPEED >= dimension.width)
                     x = dimension.width - SPEED;
                 break;
+            // TODO: Add 8 Directional Movement
             case "UP-LEFT":
                 break;
             case "DOWN-LEFT":
