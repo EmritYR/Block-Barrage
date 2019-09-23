@@ -10,6 +10,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Player player;
     private ArrayList<Block> blocks = new ArrayList<>();
     private int score = 0;
+//    private Score score;
 
     private Thread gameThread;
     private boolean isRunning;
@@ -75,11 +76,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             block.move();
         }
 
-        if (score % 17 == 0)
+        if (score % 15 == 0)
             blocks.add(new Block(this));
 
         score++;
-        System.out.println(score);
     }
 
     private void gameRender() {
