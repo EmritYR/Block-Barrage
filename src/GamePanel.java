@@ -7,6 +7,7 @@ import javax.swing.*;
  */
 public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Player player;
+    private  Block block;
 
     private Thread gameThread;
     private boolean isRunning;
@@ -27,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             while (isRunning) {
                 gameUpdate();
                 gameRender();
-                Thread.sleep(1);
+                Thread.sleep(100);
             }
         } catch (InterruptedException e) {
         }
@@ -68,18 +69,19 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     private void gameUpdate() {
-
+        block.move();
     }
 
     private void gameRender() {
         player.draw();
+        block.draw();
     }
 
     public void startGame() {
         if (gameThread == null) {
             isRunning = true;
             player = new Player(this);
-            // ball = new Ball (this, bat);
+            block = new Block(this);
             gameThread = new Thread(this);
             gameThread.start();
         }
