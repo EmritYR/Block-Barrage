@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     public void keyPressed(KeyEvent e) {
         if (player == null)
             return;
-
+        System.out.println(e.getKeyCode());
         int keyCode = e.getKeyCode();
 
         switch (keyCode) {
@@ -59,6 +59,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
                 player.move("DOWN");
+                break;
+            case KeyEvent.VK_DOWN + KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_S + KeyEvent.VK_D:
+                player.move("DOWN-RIGHT");
                 break;
         }
     }
