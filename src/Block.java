@@ -9,7 +9,7 @@ import java.util.Random;
 public class Block {
     private static final int X_SIZE = 30;
     private static final int Y_SIZE = 10;
-    private static final int SPEED = 1;
+    private static final int SPEED = 3;
 
     private JPanel panel;
     private Dimension dimension;
