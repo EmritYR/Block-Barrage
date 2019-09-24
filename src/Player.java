@@ -100,4 +100,8 @@ public class Player {
                 break;
         }
     }
+
+    public static int getLives() {
+        return lives;
+    }
 }

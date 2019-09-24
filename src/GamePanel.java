@@ -82,6 +82,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             blocks.add(new Block(this, player));
 
         score++;
+
+        if (Player.getLives() < 1)
+            isRunning = false;
     }
 
     private void gameRender() {
