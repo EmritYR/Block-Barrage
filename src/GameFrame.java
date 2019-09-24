@@ -1,10 +1,5 @@
-import java.applet.Applet;
 import javax.swing.*;
 import java.awt.event.*;
-
-/**
- * GameFrame
- */
 
 public class GameFrame extends JFrame implements ActionListener {
 

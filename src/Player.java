@@ -2,9 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-/**
- * Player
- */
 public class Player {
     private static final int SIDE_SIZE = 15;
     private static final int SPEED = 5;

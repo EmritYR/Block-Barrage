@@ -5,9 +5,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.*;
 
-/**
- * GamePanel
- */
 public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Player player;
     private ArrayList<Block> blocks = new ArrayList<>();
