@@ -1,7 +1,7 @@
 import com.sun.deploy.util.UpdateCheck;
 
+import java.awt.*;
 import java.awt.event.*;
-import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -106,4 +106,13 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             isRunning = false;
         }
     }
+
+//    public void paint(Graphics g) {
+//        Graphics2D g3 = (Graphics2D) g;
+//
+//        Font f = new Font("Times New Roman", Font.BOLD, 12);
+//        g3.setFont(f);
+//        g3.setColor(Color.WHITE);
+//        g3.drawString(Integer.toString(score), 5, 5);
+//    }
 }

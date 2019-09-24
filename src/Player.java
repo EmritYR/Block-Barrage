@@ -43,6 +43,9 @@ public class Player {
             case 5:
                 g2.setColor(Color.MAGENTA);
                 break;
+            default:
+                g2.setColor(Color.CYAN);
+                break;
         }
 
         for (int i = 1; i <= lives; i++) {
