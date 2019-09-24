@@ -13,6 +13,7 @@ public class Player {
     private Dimension dimension;
     private int x;
     private int y;
+    private int lives = 3;
 
     private Graphics2D g2;
     private Color backgroundColor;
@@ -29,13 +30,34 @@ public class Player {
     }
 
     public void draw() {
-        g2.setColor(Color.BLUE);
-        g2.fill(new Rectangle2D.Double(x, y, SIDE_SIZE, SIDE_SIZE));
+        switch (lives){
+            case 1:
+                g2.setColor(Color.RED);
+                break;
+            case 2:
+                g2.setColor(Color.ORANGE);
+                break;
+            case 3:
+                g2.setColor(Color.GREEN);
+                break;
+            case 4:
+                g2.setColor(Color.BLUE);
+                break;
+            case 5:
+                g2.setColor(Color.MAGENTA);
+                break;
+        }
+
+        for (int i = 1; i <= lives; i++) {
+            g2.fill(new Rectangle2D.Double(x, y - (SIDE_SIZE * i) - (SIDE_SIZE * i / 3.0), SIDE_SIZE, SIDE_SIZE));
+        }
     }
 
     private void erase() {
         g2.setColor(backgroundColor);
-        g2.fill(new Rectangle2D.Double(x, y, SIDE_SIZE, SIDE_SIZE));
+        for (int i = 1; i <= lives; i++) {
+            g2.fill(new Rectangle2D.Double(x, y - (SIDE_SIZE * i) - (SIDE_SIZE * i / 3.0), SIDE_SIZE, SIDE_SIZE));
+        }
     }
 
     public Rectangle2D.Double getBoundingRectangle() {
