@@ -16,7 +16,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private Thread gameThread;
     private boolean isRunning;
-    private final double UPDATE_CAP = 1.0/60.0;
 
     public GamePanel() {
         setBackground(Color.gray);
@@ -28,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         isRunning = false;
     }
 
-    public void run() {
+    public void fpsrun() {
         isRunning = true;
 
         boolean render = false;
@@ -43,6 +42,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             lastTime = firstTime;
             unprocessedTime += passedTime;
 
+            double UPDATE_CAP = 1.0 / 60.0;
             while (unprocessedTime >= UPDATE_CAP){
                 unprocessedTime -= UPDATE_CAP;
                 render = true;
@@ -58,6 +58,19 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public void run(){
+        try {
+            isRunning = true;
+            while (isRunning) {
+                gameUpdate();
+                gameRender();
+                Thread.sleep(300);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
