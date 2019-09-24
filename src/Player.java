@@ -13,7 +13,7 @@ public class Player {
     private Dimension dimension;
     private int x;
     private int y;
-    private int lives = 3;
+    private static int lives = 3;
 
     private Graphics2D g2;
     private Color backgroundColor;
@@ -64,6 +64,11 @@ public class Player {
         return new Rectangle2D.Double(x, y, SIDE_SIZE, SIDE_SIZE);
     }
 
+    public void decrementLives(){
+        lives--;
+    }
+
+
     public void move(String direction) {
         if (!panel.isVisible()) return;
         erase();
@@ -90,6 +95,5 @@ public class Player {
                     x = dimension.width - SPEED;
                 break;
         }
-
     }
 }

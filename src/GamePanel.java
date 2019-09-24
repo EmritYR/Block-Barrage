@@ -79,7 +79,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         }
 
         if (score % 15 == 0)
-            blocks.add(new Block(this));
+            blocks.add(new Block(this, player));
 
         score++;
     }
@@ -95,7 +95,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         if (gameThread == null) {
             isRunning = true;
             player = new Player(this);
-            blocks.add(new Block(this));
+            blocks.add(new Block(this, player));
             gameThread = new Thread(this);
             gameThread.start();
         }
