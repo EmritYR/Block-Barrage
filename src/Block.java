@@ -7,7 +7,7 @@ import java.util.Random;
  * Block
  */
 public class Block {
-    private static final int X_SIZE = 30;
+    private static final int X_SIZE = 35;
     private static final int Y_SIZE = 10;
     private static final int SPEED = 3;
 

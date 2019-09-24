@@ -30,7 +30,7 @@ public class Player {
     }
 
     public void draw() {
-        switch (lives){
+        switch (lives) {
             case 1:
                 g2.setColor(Color.RED);
                 break;
@@ -58,16 +58,20 @@ public class Player {
         for (int i = 1; i <= lives; i++) {
             g2.fill(new Rectangle2D.Double(x, y - (SIDE_SIZE * i) - (SIDE_SIZE * i / 3.0), SIDE_SIZE, SIDE_SIZE));
         }
+
+        // Show Collision Boundary
+        // g2.setColor(Color.BLACK);
+        // g2.fill(new Rectangle2D.Double(x + (SIDE_SIZE * 0.125), y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 4.0), SIDE_SIZE * 0.75, (SIDE_SIZE * lives) + (lives * 0.3)));
     }
 
+    // Collision Box Slightly Smaller for Game Fairness Design
     public Rectangle2D.Double getBoundingRectangle() {
-        return new Rectangle2D.Double(x, y, SIDE_SIZE, SIDE_SIZE);
+        return new Rectangle2D.Double(x + (SIDE_SIZE * 0.125), y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 4.0), SIDE_SIZE * 0.75, (SIDE_SIZE * lives) + (lives * 0.3));
     }
 
-    public void decrementLives(){
+    public void decrementLives() {
         lives--;
     }
-
 
     public void move(String direction) {
         if (!panel.isVisible()) return;
