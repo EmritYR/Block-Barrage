@@ -1,3 +1,5 @@
+import com.sun.deploy.util.UpdateCheck;
+
 import java.awt.event.*;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private Thread gameThread;
     private boolean isRunning;
+    private final double UPDATE_CAP = 1.0/60.0;
 
     public GamePanel() {
         setBackground(Color.gray);
@@ -26,21 +29,41 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     public void run() {
-        try {
-            isRunning = true;
-            while (isRunning) {
+        isRunning = true;
+
+        boolean render = false;
+        double firstTime = 0;
+        double lastTime = System.nanoTime() / 1000000000.0;
+        double passedTime = 0;
+        double unprocessedTime = 0;
+
+        while (isRunning) {
+            firstTime = System.nanoTime() / 1000000000.0;
+            passedTime = firstTime - lastTime;
+            lastTime = firstTime;
+            unprocessedTime += passedTime;
+
+            while (unprocessedTime >= UPDATE_CAP){
+                unprocessedTime -= UPDATE_CAP;
+                render = true;
+
                 gameUpdate();
-                gameRender();
-                Thread.sleep(300);
             }
-        } catch (InterruptedException e) {
+            if(render){
+                gameRender();
+            } else {
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
     public void keyPressed(KeyEvent e) {
         if (player == null)
             return;
-
         int keyCode = e.getKeyCode();
 
         switch (keyCode) {
