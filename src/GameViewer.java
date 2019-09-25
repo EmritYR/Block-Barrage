@@ -9,5 +9,4 @@ public class GameViewer {
         JFrame gameFrame = new GameFrame();
         gameFrame.setVisible(true);
     }
-
 }

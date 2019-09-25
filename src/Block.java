@@ -4,7 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 public class Block {
-    private static final int X_SIZE = 35;
+    private static final int X_SIZE = 40;
     private static final int Y_SIZE = 10;
     private static final int SPEED = 3;
 
@@ -27,7 +27,7 @@ public class Block {
         backgroundColor = panel.getBackground();
 
         dimension = panel.getSize();
-        x = (dimension.width / 8) * ((new Random().nextInt(7)) + 1);
+        x = ((dimension.width / 8) * ((new Random().nextInt(8)))) + (dimension.width / 100);
         y = (dimension.height / 12) * 11;
     }
 
@@ -54,6 +54,7 @@ public class Block {
     public void move() {
         if (!panel.isVisible()) return;
         erase();
+
         y = y - SPEED;
 
         if (playerHitsBlock()) {
@@ -63,7 +64,7 @@ public class Block {
             currentTime = (System.currentTimeMillis() / 1000.0);
             System.out.println(currentTime - hitTime);
 
-            if (currentTime - hitTime > 0.3){
+            if (currentTime - hitTime > 0.3) {
                 player.decrementLives();
                 hitTime = 0;
             }

@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         isRunning = false;
     }
 
-    public void run(){
+    public void run() {
         try {
             isRunning = true;
             while (isRunning) {
