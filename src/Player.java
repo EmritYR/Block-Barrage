@@ -55,7 +55,7 @@ public class Player {
 
     private void erase() {
         g2.setColor(backgroundColor);
-        for (int i = 1; i <= lives; i++) {
+        for (int i = 1; i <= lives + 1; i++) {
             g2.fill(new Rectangle2D.Double(x, y - (SIDE_SIZE * i) - (SIDE_SIZE * i / 3.0), SIDE_SIZE, SIDE_SIZE));
         }
 

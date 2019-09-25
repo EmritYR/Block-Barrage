@@ -9,6 +9,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Player player;
     private ArrayList<Block> blocks = new ArrayList<>();
     private int score = 0;
+    private int updater = 0;
 //    private Score score;
 
     private Thread gameThread;
@@ -30,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             while (isRunning) {
                 gameUpdate();
                 gameRender();
-                Thread.sleep(300);
+                Thread.sleep(1);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -71,14 +72,19 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     private void gameUpdate() {
-        for (Block block : blocks) {
-            block.move();
+        if (updater == 300) {
+            for (Block block : blocks) {
+                block.move();
+            }
+
+            if (score % 15 == 0)
+                blocks.add(new Block(this, player));
+
+            score++;
+            updater = 0;
+        } else {
+            updater++;
         }
-
-        if (score % 15 == 0)
-            blocks.add(new Block(this, player));
-
-        score++;
 
         if (Player.getLives() < 1)
             isRunning = false;
