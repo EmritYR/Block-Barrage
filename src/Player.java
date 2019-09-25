@@ -61,12 +61,12 @@ public class Player {
 
         // Show Collision Boundary
         // g2.setColor(Color.BLACK);
-        // g2.fill(new Rectangle2D.Double(x + (SIDE_SIZE * 0.125), y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 4.0), SIDE_SIZE * 0.75, (SIDE_SIZE * lives) + (lives * 0.3)));
+        // g2.fill(new Rectangle2D.Double(x + (SIDE_SIZE * 0.1), y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 3.5), SIDE_SIZE * 0.80, (SIDE_SIZE * lives) + (lives * 2)));
     }
 
     // Collision Box Slightly Smaller for Game Fairness Design
     public Rectangle2D.Double getBoundingRectangle() {
-        return new Rectangle2D.Double(x + (SIDE_SIZE * 0.125), y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 4.0), SIDE_SIZE * 0.75, (SIDE_SIZE * lives) + (lives * 0.3));
+        return new Rectangle2D.Double(x + (SIDE_SIZE * 0.1), y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 3.5), SIDE_SIZE * 0.80, (SIDE_SIZE * lives) + (lives * 2));
     }
 
     public void decrementLives() {

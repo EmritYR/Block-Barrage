@@ -13,6 +13,8 @@ public class Block {
     private Dimension dimension;
     private int x;
     private int y;
+    private double hitTime = 0;
+    private double currentTime = 0;
 
     private Graphics2D g2;
     private Color backgroundColor;
@@ -46,7 +48,7 @@ public class Block {
     private boolean playerHitsBlock() {
         Rectangle2D.Double playerHitBox = player.getBoundingRectangle();
         Rectangle2D.Double blockHitBox = getBoundingRectangle();
-        return  (playerHitBox.intersects(blockHitBox));
+        return (playerHitBox.intersects(blockHitBox));
     }
 
     public void move() {
@@ -55,11 +57,20 @@ public class Block {
         y = y - SPEED;
 
         if (playerHitsBlock()) {
-            player.decrementLives();
+            if (hitTime == 0)
+                hitTime = (System.currentTimeMillis() / 1000.0);
+
+            currentTime = (System.currentTimeMillis() / 1000.0);
+            System.out.println(currentTime - hitTime);
+
+            if (currentTime - hitTime > 0.3){
+                player.decrementLives();
+                hitTime = 0;
+            }
 
             try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e){
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
