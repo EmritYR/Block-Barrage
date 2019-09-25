@@ -60,9 +60,7 @@ public class Block {
         if (playerHitsBlock()) {
             if (hitTime == 0)
                 hitTime = (System.currentTimeMillis() / 1000.0);
-
             currentTime = (System.currentTimeMillis() / 1000.0);
-            System.out.println(currentTime - hitTime);
 
             if (currentTime - hitTime > 0.3) {
                 player.decrementLives();
