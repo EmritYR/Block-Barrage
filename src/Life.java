@@ -3,21 +3,21 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
-public class Block {
-    private static final int X_SIZE = 40;
-    private static final int Y_SIZE = 10;
+public class Life {
     private static final int SPEED = 3;
+    private static final int SIDE_SIZE = 10;
 
     private JPanel panel;
     private Player player;
     private Dimension dimension;
     private int x;
     private int y;
+    private boolean used = false;
 
     private Graphics2D g2;
     private Color backgroundColor;
 
-    public Block(JPanel p, Player py) {
+    public Life(JPanel p, Player py) {
         panel = p;
         player = py;
         Graphics g = panel.getGraphics();
@@ -30,33 +30,35 @@ public class Block {
     }
 
     public void draw() {
-        g2.setColor(Color.darkGray);
-        g2.fill(new Rectangle2D.Double(x, y, X_SIZE, Y_SIZE));
+        if (used) return;
+        g2.setColor(Color.RED);
+        g2.fill(new Rectangle2D.Double(x, y, SIDE_SIZE, SIDE_SIZE));
     }
 
     private void erase() {
         g2.setColor(backgroundColor);
-        g2.fill(new Rectangle2D.Double(x, y, X_SIZE, Y_SIZE));
+        g2.fill(new Rectangle2D.Double(x, y, SIDE_SIZE, SIDE_SIZE));
     }
 
     private Rectangle2D.Double getBoundingRectangle() {
-        return new Rectangle2D.Double(x, y, X_SIZE, Y_SIZE);
+        return new Rectangle2D.Double(x, y, SIDE_SIZE, SIDE_SIZE);
     }
 
-    private boolean playerHitsBlock() {
+    private boolean playerHitsLife(){
         Rectangle2D.Double playerHitBox = player.getBoundingRectangle();
-        Rectangle2D.Double blockHitBox = getBoundingRectangle();
-        return (playerHitBox.intersects(blockHitBox));
+        Rectangle2D.Double lifeHitBox = getBoundingRectangle();
+        return playerHitBox.intersects(lifeHitBox);
     }
-
     public void move() {
         if (!panel.isVisible()) return;
         erase();
 
         y = y - SPEED;
 
-        if (playerHitsBlock()) {
-            player.decrementLives();
+        if (playerHitsLife() && !used) {
+            player.incrementLives();
+            used = true;
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {

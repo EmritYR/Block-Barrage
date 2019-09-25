@@ -74,6 +74,10 @@ public class Player {
         lives--;
     }
 
+    public void incrementLives(){
+        lives++;
+    }
+
     public void move(String direction) {
         if (!panel.isVisible()) return;
         erase();

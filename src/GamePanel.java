@@ -7,6 +7,8 @@ import javax.swing.*;
 public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Player player;
     private ArrayList<Block> blocks = new ArrayList<>();
+    private Life life = null;
+
     private final int UPDATE_TIME = 100;
     private Thread gameThread;
     private boolean isRunning;
@@ -81,6 +83,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             if (score % 15 == 0)
                 blocks.add(new Block(this, player));
 
+            if (score % 30 == 0)
+                life =  new Life(this, player);
+            if (life != null)
+                life.move();
+
             score++;
             updater = 0;
         } else {
@@ -97,6 +104,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         for (Block block : blocks) {
             block.draw();
         }
+
+        if(life != null)
+            life.draw();
     }
     private void clearPanel(){
         Graphics g = this.getGraphics();
