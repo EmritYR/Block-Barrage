@@ -1,19 +1,20 @@
-import com.sun.deploy.util.UpdateCheck;
-
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import javax.swing.*;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Player player;
     private ArrayList<Block> blocks = new ArrayList<>();
-    private int score = 0;
-    private int updater = 0;
-//    private Score score;
-
+    private final int UPDATE_TIME = 100;
     private Thread gameThread;
     private boolean isRunning;
+    private  Graphics2D g2;
+    private Dimension dimension;
+
+    private int score = 0;
+    private int updater = 0;
 
     public GamePanel() {
         setBackground(Color.gray);
@@ -31,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             while (isRunning) {
                 gameUpdate();
                 gameRender();
-                Thread.sleep(1);
+                Thread.sleep(5);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -72,7 +73,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     private void gameUpdate() {
-        if (updater == 300) {
+        if (updater == UPDATE_TIME) {
             for (Block block : blocks) {
                 block.move();
             }
@@ -91,11 +92,20 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     private void gameRender() {
+        clearPanel();
         player.draw();
         for (Block block : blocks) {
             block.draw();
         }
     }
+    private void clearPanel(){
+        Graphics g = this.getGraphics();
+        g2 = (Graphics2D) g;
+        g2.setColor(this.getBackground());
+        dimension = this.getSize();
+        g2.fill(new Rectangle2D.Double(0, 0, dimension.width, dimension.height ));
+    }
+
 
     public void startGame() {
         if (gameThread == null) {

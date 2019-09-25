@@ -58,15 +58,7 @@ public class Block {
         y = y - SPEED;
 
         if (playerHitsBlock()) {
-            if (hitTime == 0)
-                hitTime = (System.currentTimeMillis() / 1000.0);
-            currentTime = (System.currentTimeMillis() / 1000.0);
-
-            if (currentTime - hitTime > 0.3) {
-                player.decrementLives();
-                hitTime = 0;
-            }
-
+            player.decrementLives();
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {

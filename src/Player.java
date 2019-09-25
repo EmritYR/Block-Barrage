@@ -51,6 +51,11 @@ public class Player {
         for (int i = 1; i <= lives; i++) {
             g2.fill(new Rectangle2D.Double(x, y - (SIDE_SIZE * i) - (SIDE_SIZE * i / 3.0), SIDE_SIZE, SIDE_SIZE));
         }
+
+        // Show Collision Boundary
+        g2.setColor(Color.BLACK);
+        g2.fill(new Rectangle2D.Double(x + (SIDE_SIZE * 0.1), y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 3.5), SIDE_SIZE * 0.80, (SIDE_SIZE * lives) + (lives * 2)));
+
     }
 
     private void erase() {
@@ -58,10 +63,6 @@ public class Player {
         for (int i = 1; i <= lives + 1; i++) {
             g2.fill(new Rectangle2D.Double(x, y - (SIDE_SIZE * i) - (SIDE_SIZE * i / 3.0), SIDE_SIZE, SIDE_SIZE));
         }
-
-        // Show Collision Boundary
-        // g2.setColor(Color.BLACK);
-        // g2.fill(new Rectangle2D.Double(x + (SIDE_SIZE * 0.1), y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 3.5), SIDE_SIZE * 0.80, (SIDE_SIZE * lives) + (lives * 2)));
     }
 
     // Collision Box Slightly Smaller for Game Fairness Design
