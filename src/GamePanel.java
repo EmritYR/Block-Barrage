@@ -9,7 +9,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private ArrayList<Block> blocks = new ArrayList<>();
     private Life life = null;
 
-    private final int UPDATE_TIME = 100;
+    private final int UPDATE_TIME = 50;
+    private final int SPAWN_X_BLOCKS = 3;
     private Thread gameThread;
     private boolean isRunning;
     private  Graphics2D g2;
@@ -76,18 +77,29 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private void gameUpdate() {
         if (updater == UPDATE_TIME) {
+            // Move All Blocks
             for (Block block : blocks) {
+                System.out.println(blocks.size());
                 block.move();
             }
 
-            if (score % 15 == 0)
-                blocks.add(new Block(this, player));
+            // Adds New Block to Screen
+            if (score % 15 == 0){
+                for (int i = 0; i < SPAWN_X_BLOCKS ; i++) {
+                    blocks.add(new Block(this, player));
+                }
+            }
 
-            if (score % 30 == 0)
+            // Extra Life Power UP Controller
+            if (score % 100 == 0 && life != null)
                 life =  new Life(this, player);
-            if (life != null)
+            if (life != null){
                 life.move();
+                if (life.isUsed())
+                    life = null;
+            }
 
+//            System.out.println(score);
             score++;
             updater = 0;
         } else {

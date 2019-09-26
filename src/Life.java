@@ -66,4 +66,8 @@ public class Life {
             }
         }
     }
+
+    public boolean isUsed() {
+        return used;
+    }
 }

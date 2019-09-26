@@ -6,7 +6,7 @@ import java.util.Random;
 public class Block {
     private static final int X_SIZE = 40;
     private static final int Y_SIZE = 10;
-    private static final int SPEED = 3;
+    private static final int SPEED = 9;
 
     private JPanel panel;
     private Player player;
