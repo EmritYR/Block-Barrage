@@ -79,7 +79,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         if (updater == UPDATE_TIME) {
             // Move All Blocks
             for (Block block : blocks) {
-                System.out.println(blocks.size());
                 block.move();
             }
 
