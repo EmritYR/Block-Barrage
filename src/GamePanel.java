@@ -90,7 +90,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             }
 
             // Extra Life Power UP Controller
-            if (score % 100 == 0 && life != null)
+            if (score % 100 == 0 && life == null)
                 life =  new Life(this, player);
             if (life != null){
                 life.move();
@@ -100,6 +100,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 //            System.out.println(score);
             score++;
+            System.out.println(score);
             updater = 0;
         } else {
             updater++;
