@@ -4,7 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 public class Block {
-    private static final int X_SIZE = 40;
+    private static final int X_SIZE = 140;
     private static final int Y_SIZE = 10;
     private static final int SPEED = 9;
 
