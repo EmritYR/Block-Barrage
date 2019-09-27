@@ -116,8 +116,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         level++;
         Constants.SPAWN_X_BLOCKS *= 1.5;
         Constants.BLOCK_SPEED *= 1.5;
-        System.out.println(Constants.SPAWN_X_BLOCKS);
-        System.out.println(Constants.BLOCK_SPEED);
     }
 
     private void gameRender() {

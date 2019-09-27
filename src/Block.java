@@ -6,7 +6,7 @@ import java.util.Random;
 public class Block {
     private static final int X_SIZE = 40;
     private static final int Y_SIZE = 10;
-    private static final int SPEED = Constants.BLOCK_SPEED;
+    private static int SPEED = Constants.BLOCK_SPEED;
 
     private JPanel panel;
     private Player player;
@@ -28,6 +28,8 @@ public class Block {
         dimension = panel.getSize();
         x = ((dimension.width / 8) * ((new Random().nextInt(8)))) + (dimension.width / 100);
         y = (dimension.height / 12) * 11;
+
+        SPEED = Constants.BLOCK_SPEED;
     }
 
     public void draw() {
