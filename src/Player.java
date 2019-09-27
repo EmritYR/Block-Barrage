@@ -67,14 +67,14 @@ public class Player {
 
     // Collision Box Slightly Smaller for Game Fairness Design
     public Rectangle2D.Double getBoundingRectangle() {
-        return new Rectangle2D.Double(x, y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 3.5), SIDE_SIZE, (SIDE_SIZE * lives) + (lives * 2));
+        return new Rectangle2D.Double(x , y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 3.5), SIDE_SIZE, (SIDE_SIZE * lives) + (lives * 2));
     }
 
     public void decrementLives() {
         lives--;
     }
 
-    public void incrementLives() {
+    public void incrementLives(){
         lives++;
     }
 

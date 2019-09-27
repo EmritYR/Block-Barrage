@@ -6,13 +6,14 @@ import java.util.Random;
 public class Block {
     private static final int X_SIZE = 40;
     private static final int Y_SIZE = 10;
-    private static final int SPEED = 3;
+    private static final int SPEED = 9;
 
     private JPanel panel;
     private Player player;
     private Dimension dimension;
     private int x;
     private int y;
+    private int invunurable = 1;
 
     private Graphics2D g2;
     private Color backgroundColor;
@@ -56,7 +57,15 @@ public class Block {
         y = y - SPEED;
 
         if (playerHitsBlock()) {
-            player.decrementLives();
+
+            if (invunurable == 0) {
+                player.decrementLives();
+                invunurable = 1;
+            } else {
+                invunurable--;
+            }
+            System.out.println(invunurable);
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {

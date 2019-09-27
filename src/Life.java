@@ -44,16 +44,14 @@ public class Life {
         return new Rectangle2D.Double(x, y, SIDE_SIZE, SIDE_SIZE);
     }
 
-    private boolean playerHitsLife() {
+    private boolean playerHitsLife(){
         Rectangle2D.Double playerHitBox = player.getBoundingRectangle();
         Rectangle2D.Double lifeHitBox = getBoundingRectangle();
         return playerHitBox.intersects(lifeHitBox);
     }
-
     public void move() {
         if (!panel.isVisible()) return;
         erase();
-
         y = y - SPEED;
 
         if (playerHitsLife() && !used) {
@@ -66,5 +64,9 @@ public class Life {
                 e.printStackTrace();
             }
         }
+    }
+
+    public boolean isUsed() {
+        return used;
     }
 }

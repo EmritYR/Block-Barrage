@@ -9,9 +9,6 @@ public class GameFrame extends JFrame implements ActionListener {
         setTitle("Block Barrage");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel scorePanel = new JPanel();
-        add(scorePanel, "North");
-
         gamePanel = new GamePanel();
         add(gamePanel, "Center");
 
