@@ -12,7 +12,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private final int UPDATE_TIME = 100;
     private Thread gameThread;
     private boolean isRunning;
-    private  Graphics2D g2;
+    private Graphics2D g2;
     private Dimension dimension;
 
     private int score = 0;
@@ -84,7 +84,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
                 blocks.add(new Block(this, player));
 
             if (score % 30 == 0)
-                life =  new Life(this, player);
+                life = new Life(this, player);
             if (life != null)
                 life.move();
 
@@ -105,15 +105,16 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             block.draw();
         }
 
-        if(life != null)
+        if (life != null)
             life.draw();
     }
-    private void clearPanel(){
+
+    private void clearPanel() {
         Graphics g = this.getGraphics();
         g2 = (Graphics2D) g;
         g2.setColor(this.getBackground());
         dimension = this.getSize();
-        g2.fill(new Rectangle2D.Double(0, 0, dimension.width, dimension.height ));
+        g2.fill(new Rectangle2D.Double(0, 0, dimension.width, dimension.height));
     }
 
 
