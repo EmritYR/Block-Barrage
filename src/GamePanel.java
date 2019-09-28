@@ -10,14 +10,15 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Life life = null;
 
     private final int UPDATE_TIME = 50;
-    private final int SPAWN_X_BLOCKS = 3;
+    private final int SPAWN_X_BLOCKS = Constants.SPAWN_X_BLOCKS;
     private Thread gameThread;
     private boolean isRunning;
-    private  Graphics2D g2;
+    private Graphics2D g2;
     private Dimension dimension;
 
     private int score = 0;
     private int updater = 0;
+    private int level = 1;
 
     public GamePanel() {
         setBackground(Color.gray);
@@ -64,6 +65,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             case KeyEvent.VK_S:
                 player.move("DOWN");
                 break;
+            case KeyEvent.VK_L:
+                levelUp();
+                break;
         }
     }
 
@@ -83,24 +87,22 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             }
 
             // Adds New Block to Screen
-            if (score % 15 == 0){
-                for (int i = 0; i < SPAWN_X_BLOCKS ; i++) {
+            if (score % 15 == 0) {
+                for (int i = 0; i < SPAWN_X_BLOCKS; i++) {
                     blocks.add(new Block(this, player));
                 }
             }
 
             // Extra Life Power UP Controller
             if (score % 100 == 0 && life == null)
-                life =  new Life(this, player);
-            if (life != null){
+                life = new Life(this, player);
+            if (life != null) {
                 life.move();
                 if (life.isUsed())
                     life = null;
             }
 
-//            System.out.println(score);
             score++;
-            System.out.println(score);
             updater = 0;
         } else {
             updater++;
@@ -110,6 +112,12 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             isRunning = false;
     }
 
+    public void levelUp() {
+        level++;
+        Constants.SPAWN_X_BLOCKS *= 1.5;
+        Constants.BLOCK_SPEED *= 1.5;
+    }
+
     private void gameRender() {
         clearPanel();
         player.draw();
@@ -117,15 +125,16 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             block.draw();
         }
 
-        if(life != null)
+        if (life != null)
             life.draw();
     }
-    private void clearPanel(){
+
+    private void clearPanel() {
         Graphics g = this.getGraphics();
         g2 = (Graphics2D) g;
         g2.setColor(this.getBackground());
         dimension = this.getSize();
-        g2.fill(new Rectangle2D.Double(0, 0, dimension.width, dimension.height ));
+        g2.fill(new Rectangle2D.Double(0, 0, dimension.width, dimension.height));
     }
 
 
