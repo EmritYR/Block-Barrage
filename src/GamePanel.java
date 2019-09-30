@@ -8,6 +8,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Player player;
     private ArrayList<Block> blocks = new ArrayList<>();
     private Life life = null;
+    private Trophy trophy = null;
 
     private final int UPDATE_TIME = 50;
     private final int SPAWN_X_BLOCKS = Constants.SPAWN_X_BLOCKS;
@@ -16,7 +17,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Graphics2D g2;
     private Dimension dimension;
 
-    private int score = 0;
+    private int score = 1;
     private int updater = 0;
     private int level = 1;
 
@@ -81,16 +82,16 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private void gameUpdate() {
         if (updater == UPDATE_TIME) {
-            // Move All Blocks
-            for (Block block : blocks) {
-                block.move();
-            }
-
             // Adds New Block to Screen
             if (score % 15 == 0) {
                 for (int i = 0; i < SPAWN_X_BLOCKS; i++) {
                     blocks.add(new Block(this, player));
                 }
+            }
+
+            // Move All Blocks
+            for (Block block : blocks) {
+                block.move();
             }
 
             // Extra Life Power UP Controller
@@ -100,6 +101,17 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
                 life.move();
                 if (life.isUsed())
                     life = null;
+            }
+
+            // Trophy Controller
+            if (score % 300 == 0 && trophy == null)
+                trophy = new Trophy(this, player);
+            if (trophy != null) {
+                trophy.move();
+                if (trophy.isUsed()) {
+                    trophy = null;
+                    levelUp();
+                }
             }
 
             score++;
@@ -114,8 +126,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     public void levelUp() {
         level++;
-        Constants.SPAWN_X_BLOCKS *= 1.5;
-        Constants.BLOCK_SPEED *= 1.5;
+        Constants.SPAWN_X_BLOCKS += 1;
+        Constants.BLOCK_SPEED += 3;
+        System.out.println(level);
     }
 
     private void gameRender() {
@@ -127,6 +140,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         if (life != null)
             life.draw();
+
+        if (trophy != null)
+            trophy.draw();
     }
 
     private void clearPanel() {
@@ -142,7 +158,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         if (gameThread == null) {
             isRunning = true;
             player = new Player(this);
-            blocks.add(new Block(this, player));
+            for (int i = 0; i < SPAWN_X_BLOCKS; i++) {
+                blocks.add(new Block(this, player));
+            }
             gameThread = new Thread(this);
             gameThread.start();
         }

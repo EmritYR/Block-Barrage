@@ -64,7 +64,6 @@ public class Block {
             } else {
                 invunurable--;
             }
-            System.out.println(invunurable);
 
             try {
                 Thread.sleep(1);
