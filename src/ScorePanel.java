@@ -3,12 +3,15 @@ import javax.swing.*;
 public class ScorePanel extends JPanel implements Runnable {
     private Thread scoreThread;
     private JLabel scoreLabel = new JLabel("Score: " + Score.getScore());
+    private JLabel levelLabel = new JLabel("Level: " + Score.getLevel());
+
     private boolean isRunning = false;
 
     public ScorePanel() {
         scoreLabel.setFocusable(true);
         scoreLabel.requestFocus();
-        add(scoreLabel, "Center");
+        add(scoreLabel);
+        add(levelLabel);
     }
 
     @Override
@@ -16,6 +19,7 @@ public class ScorePanel extends JPanel implements Runnable {
         isRunning = true;
         while (isRunning) {
             scoreLabel.setText("Score: " + Score.getScore());
+            levelLabel.setText("Level: " + Score.getLevel());
 
             try {
                 Thread.sleep(3);

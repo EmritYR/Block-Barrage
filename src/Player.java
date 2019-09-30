@@ -107,4 +107,9 @@ public class Player {
     public static int getLives() {
         return lives;
     }
+
+    public void setCoordinates(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
 }

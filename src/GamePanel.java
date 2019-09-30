@@ -15,9 +15,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private int SPAWN_X_BLOCKS = Constants.SPAWN_X_BLOCKS;
     private Thread gameThread;
     private boolean isRunning;
+    private Dimension dimension = getSize();
 
     private int updater = 0;
-    private int level = 1;
 
     private int lifeSpawnRate = Constants.LIFE_SPAWN_RATE;
     private int trophySpawnRate = Constants.TROPHY_SPAWN_RATE;
@@ -141,7 +141,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     public void levelUp() {
-        level++;
+        score.incrementLevel();
         SPAWN_X_BLOCKS += Constants.INCREMENT_SPAWN_X_BLOCKS;
         Constants.BLOCK_SPEED += Constants.INCREMENT_BLOCK_SPEED;
 
