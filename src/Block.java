@@ -13,7 +13,6 @@ public class Block {
     private Dimension dimension;
     private int x;
     private int y;
-    private int invunurable = 1;
 
     private Graphics2D g2;
     private Color backgroundColor;
@@ -57,16 +56,10 @@ public class Block {
         y = y - SPEED;
 
         if (playerHitsBlock()) {
-
-            if (invunurable == 0) {
-                player.decrementLives();
-                invunurable = 1;
-            } else {
-                invunurable--;
-            }
+            player.decrementLives();
 
             try {
-                Thread.sleep(1);
+                Thread.sleep(3);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

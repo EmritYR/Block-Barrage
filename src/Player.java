@@ -11,6 +11,7 @@ public class Player {
     private int x;
     private int y;
     private static int lives = 3;
+    private int invunurable = 0;
 
     private Graphics2D g2;
     private Color backgroundColor;
@@ -67,14 +68,19 @@ public class Player {
 
     // Collision Box Slightly Smaller for Game Fairness Design
     public Rectangle2D.Double getBoundingRectangle() {
-        return new Rectangle2D.Double(x , y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 3.5), SIDE_SIZE, (SIDE_SIZE * lives) + (lives * 2));
+        return new Rectangle2D.Double(x, y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 3.5), SIDE_SIZE, (SIDE_SIZE * lives) + (lives * 2));
     }
 
     public void decrementLives() {
-        lives--;
+        if (invunurable == 0) {
+            lives--;
+            invunurable = 1;
+        } else {
+            invunurable--;
+        }
     }
 
-    public void incrementLives(){
+    public void incrementLives() {
         lives++;
     }
 
