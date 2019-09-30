@@ -31,7 +31,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         addKeyListener(this);
         setFocusable(true);
         requestFocus();
-
         gameThread = null;
         isRunning = false;
     }
@@ -70,16 +69,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
                 player.move("DOWN");
-                break;
-            case KeyEvent.VK_ESCAPE:
-                System.out.println(gameThread.getState());
-                if (gameThread.getState().equals(Thread.State.TIMED_WAITING)) {
-                    gameThread.suspend();
-                } else {
-                    gameThread.resume();
-                }
-                break;
-            case KeyEvent.VK_ENTER:
                 break;
         }
     }
@@ -199,7 +188,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         if (isRunning) {
             isRunning = false;
         }
-        gameThread.suspend();
     }
 
 //    public void paint(Graphics g) {
