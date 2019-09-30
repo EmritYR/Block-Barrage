@@ -4,8 +4,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 public class Life {
-    private static final int SPEED = 3;
-    private static final int SIDE_SIZE = 10;
+    private static final int SPEED = Constants.LIFE_SPEED;
+    private static final int SIDE_SIZE = Constants.LIFE_SIZE;
 
     private JPanel panel;
     private Player player;

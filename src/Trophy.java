@@ -4,7 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.PrimitiveIterator;
 
 public class Trophy {
-    private static final int SIZE = 10;
+    private static final int SIZE = Constants.TROPHY_SIZE;
 
     private JPanel panel;
     private Player player;

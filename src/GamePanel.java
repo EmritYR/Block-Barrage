@@ -5,17 +5,18 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
+    private Graphics2D g2;
+    private Dimension dimension;
+
     private Player player;
     private ArrayList<Block> blocks = new ArrayList<>();
     private Life life = null;
     private Trophy trophy = null;
 
-    private final int UPDATE_TIME = 50;
+    private final int UPDATE_TIME = Constants.UPDATE_TIME;
     private final int SPAWN_X_BLOCKS = Constants.SPAWN_X_BLOCKS;
     private Thread gameThread;
     private boolean isRunning;
-    private Graphics2D g2;
-    private Dimension dimension;
 
     private int score = 1;
     private int updater = 0;
@@ -66,8 +67,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             case KeyEvent.VK_S:
                 player.move("DOWN");
                 break;
-            case KeyEvent.VK_L:
-                levelUp();
+            case KeyEvent.VK_ESCAPE:
                 break;
         }
     }

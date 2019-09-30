@@ -4,8 +4,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 public class Block {
-    private static final int X_SIZE = 40;
-    private static final int Y_SIZE = 10;
+    private static final int X_SIZE = Constants.BLOCK_WIDTH;
+    private static final int Y_SIZE = Constants.BLOCK_HEIGHT;
     private static int SPEED = Constants.BLOCK_SPEED;
 
     private JPanel panel;

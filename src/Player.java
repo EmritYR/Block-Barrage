@@ -3,23 +3,24 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public class Player {
-    private static final int SIDE_SIZE = 15;
-    private static final int SPEED = 5;
-
     private JPanel panel;
     private Dimension dimension;
-    private int x;
-    private int y;
-    private static int lives = 3;
-    private int invunurable = 0;
-
     private Graphics2D g2;
     private Color backgroundColor;
 
+    private static final int SIDE_SIZE = Constants.PLAYER_SIZE;
+    private static final int SPEED = Constants.PLAYER_SPEED;
+    private static int lives = 3;
+    private int invulnerable = 0;
+    private int invulnerableCooldown = Constants.PLAYER_HIT_COOLDOWN;
+
+    private int x;
+    private int y;
+
+
     public Player(JPanel p) {
         panel = p;
-        Graphics g = panel.getGraphics();
-        g2 = (Graphics2D) g;
+        g2 = (Graphics2D) panel.getGraphics();
         backgroundColor = panel.getBackground();
 
         dimension = panel.getSize();
@@ -72,11 +73,11 @@ public class Player {
     }
 
     public void decrementLives() {
-        if (invunurable == 0) {
+        if (invulnerable == 0) {
             lives--;
-            invunurable = 1;
+            invulnerable = invulnerableCooldown;
         } else {
-            invunurable--;
+            invulnerable--;
         }
     }
 
