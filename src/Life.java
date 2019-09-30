@@ -51,7 +51,6 @@ public class Life {
     }
     public void move() {
         if (!panel.isVisible()) return;
-        erase();
         y = y - SPEED;
 
         if (playerHitsLife() && !used) {

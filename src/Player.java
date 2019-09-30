@@ -80,7 +80,6 @@ public class Player {
 
     public void move(String direction) {
         if (!panel.isVisible()) return;
-        erase();
 
         switch (direction) {
             case "UP":
