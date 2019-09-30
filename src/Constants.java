@@ -22,11 +22,13 @@ public enum Constants {
 
     // Trophy Variables
     public static int TROPHY_SIZE = 10;
-    public static final int TROPHY_SPAWN_RATE = 300;
+    public static final int TROPHY_SPAWN_RATE = 200;
 
     // GamePanel Variables
     public static final int UPDATE_TIME = 50;
     public static int SPAWN_X_BLOCKS = 3;
+    public static final int INCREMENT_SPAWN_X_BLOCKS = 1;
+    public static final int INCREMENT_BLOCK_SPEED = 1;
 
 
 }

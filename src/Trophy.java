@@ -8,7 +8,6 @@ public class Trophy {
 
     private JPanel panel;
     private Player player;
-    private Dimension dimension;
     private Graphics2D g2;
     private int y;
     private int x;
@@ -18,7 +17,7 @@ public class Trophy {
         panel = p;
         player = py;
         g2 = (Graphics2D) panel.getGraphics();
-        dimension = panel.getSize();
+        Dimension dimension = panel.getSize();
 
         x = ((dimension.width / 2) - (SIZE / 2));
         y = (dimension.height / 12) * 11;
@@ -30,7 +29,7 @@ public class Trophy {
     }
 
     private Rectangle2D.Double getBoundingRectangle() {
-        return new Rectangle2D.Double(x, y, SIZE, SIZE * 2);
+        return new Rectangle2D.Double(x, y-SIZE, SIZE, SIZE * 2);
     }
 
     private boolean playerHitsTrophy() {

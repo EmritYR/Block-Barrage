@@ -12,7 +12,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Score score = new Score();
 
     private final int UPDATE_TIME = Constants.UPDATE_TIME;
-    private final int SPAWN_X_BLOCKS = Constants.SPAWN_X_BLOCKS;
+    private int SPAWN_X_BLOCKS = Constants.SPAWN_X_BLOCKS;
     private Thread gameThread;
     private boolean isRunning;
 
@@ -142,9 +142,17 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     public void levelUp() {
         level++;
-        Constants.SPAWN_X_BLOCKS += 1;
-        Constants.BLOCK_SPEED += 3;
-        System.out.println(level);
+        SPAWN_X_BLOCKS += Constants.INCREMENT_SPAWN_X_BLOCKS;
+        Constants.BLOCK_SPEED += Constants.INCREMENT_BLOCK_SPEED;
+
+        blocks.clear();
+        life = null;
+
+        try {
+            Thread.sleep(15);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void gameRender() {
