@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class GameFrame extends JFrame implements ActionListener, KeyListener {
+public class GameFrame extends JFrame implements ActionListener {
     private GamePanel gamePanel;
     private ScorePanel scorePanel;
 
@@ -51,34 +51,5 @@ public class GameFrame extends JFrame implements ActionListener, KeyListener {
                 setVisible(false);
                 System.exit(0);
         }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent event) {
-        int keyCode = event.getKeyCode();
-
-        switch (keyCode){
-            case KeyEvent.VK_ENTER:
-                gamePanel.requestFocus();
-                gamePanel.startGame();
-                scorePanel.startGame();
-                break;
-            case KeyEvent.VK_ESCAPE:
-                gamePanel.endGame();
-                scorePanel.endGame();
-                setVisible(false);
-                System.exit(0);
-                break;
-        }
-    }
-
-    @Override
-    public void keyPressed(KeyEvent event) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent event) {
-
     }
 }
