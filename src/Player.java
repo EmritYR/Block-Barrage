@@ -53,8 +53,10 @@ public class Player {
         }
 
 //         Show Collision Boundary
-//         g2.setColor(Color.BLACK);
-//         g2.fill(new Rectangle2D.Double(x, y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 3.5), SIDE_SIZE, (SIDE_SIZE * lives) + (lives * 2)));
+        if (Options.SHOW_PLAYER_HITBOX) {
+            g2.setColor(Color.BLACK);
+            g2.fill(new Rectangle2D.Double(x, y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 3.5), SIDE_SIZE, (SIDE_SIZE * lives) + (lives * 2)));
+        }
     }
 
     // Collision Box Slightly Smaller for Game Fairness Design
