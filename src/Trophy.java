@@ -10,7 +10,6 @@ public class Trophy {
     private Player player;
     private Dimension dimension;
     private Graphics2D g2;
-    private Color backgroundColor;
     private int y;
     private int x;
     private boolean used;
@@ -19,7 +18,6 @@ public class Trophy {
         panel = p;
         player = py;
         g2 = (Graphics2D) panel.getGraphics();
-        backgroundColor = panel.getBackground();
         dimension = panel.getSize();
 
         x = ((dimension.width / 2) - (SIZE / 2));
@@ -35,14 +33,14 @@ public class Trophy {
         return new Rectangle2D.Double(x, y, SIZE, SIZE * 2);
     }
 
-    private boolean playerHitsTrophy(){
+    private boolean playerHitsTrophy() {
         Rectangle2D.Double playerHitBox = player.getBoundingRectangle();
         Rectangle2D.Double trophyHitBox = getBoundingRectangle();
         return playerHitBox.intersects(trophyHitBox);
     }
 
-    public void move(){
-        if(!panel.isVisible()) return;
+    public void move() {
+        if (!panel.isVisible()) return;
         if (playerHitsTrophy() && !used) {
             used = true;
         }

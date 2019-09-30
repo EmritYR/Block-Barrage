@@ -9,21 +9,18 @@ public class Life {
 
     private JPanel panel;
     private Player player;
-    private Dimension dimension;
     private int x;
     private int y;
     private boolean used = false;
 
     private Graphics2D g2;
-    private Color backgroundColor;
 
     public Life(JPanel p, Player py) {
         panel = p;
         player = py;
         g2 = (Graphics2D) panel.getGraphics();
-        backgroundColor = panel.getBackground();
 
-        dimension = panel.getSize();
+        Dimension dimension = panel.getSize();
         x = ((dimension.width / 8) * ((new Random().nextInt(8)))) + (dimension.width / 100);
         y = (dimension.height / 12) * 11;
     }
@@ -31,11 +28,6 @@ public class Life {
     public void draw() {
         if (used) return;
         g2.setColor(Color.RED);
-        g2.fill(new Rectangle2D.Double(x, y, SIDE_SIZE, SIDE_SIZE));
-    }
-
-    private void erase() {
-        g2.setColor(backgroundColor);
         g2.fill(new Rectangle2D.Double(x, y, SIDE_SIZE, SIDE_SIZE));
     }
 

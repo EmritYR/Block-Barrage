@@ -6,7 +6,6 @@ public class Player {
     private JPanel panel;
     private Dimension dimension;
     private Graphics2D g2;
-    private Color backgroundColor;
 
     private static final int SIDE_SIZE = Constants.PLAYER_SIZE;
     private static final int SPEED = Constants.PLAYER_SPEED;
@@ -21,7 +20,6 @@ public class Player {
     public Player(JPanel p) {
         panel = p;
         g2 = (Graphics2D) panel.getGraphics();
-        backgroundColor = panel.getBackground();
 
         dimension = panel.getSize();
         x = (dimension.width / 2);
@@ -57,14 +55,6 @@ public class Player {
 //         Show Collision Boundary
 //         g2.setColor(Color.BLACK);
 //         g2.fill(new Rectangle2D.Double(x, y - (SIDE_SIZE * lives) - (SIDE_SIZE * lives / 3.5), SIDE_SIZE, (SIDE_SIZE * lives) + (lives * 2)));
-
-    }
-
-    private void erase() {
-        g2.setColor(backgroundColor);
-        for (int i = 1; i <= lives + 1; i++) {
-            g2.fill(new Rectangle2D.Double(x, y - (SIDE_SIZE * i) - (SIDE_SIZE * i / 3.0), SIDE_SIZE, SIDE_SIZE));
-        }
     }
 
     // Collision Box Slightly Smaller for Game Fairness Design

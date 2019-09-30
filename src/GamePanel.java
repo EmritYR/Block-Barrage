@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
-    private Graphics2D g2;
-    private Dimension dimension;
-
     private Player player;
     private ArrayList<Block> blocks = new ArrayList<>();
     private Life life = null;
@@ -19,7 +16,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Thread gameThread;
     private boolean isRunning;
 
-//    private int score = 1;
+    //    private int score = 1;
     private int updater = 0;
     private int level = 1;
 
@@ -168,9 +165,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private void clearPanel() {
         Graphics g = this.getGraphics();
-        g2 = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D) g;
         g2.setColor(this.getBackground());
-        dimension = this.getSize();
+        Dimension dimension = this.getSize();
         g2.fill(new Rectangle2D.Double(0, 0, dimension.width, dimension.height));
     }
 

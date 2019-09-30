@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class Score extends JComponent {
     private static int score = 1;
@@ -12,7 +11,7 @@ public class Score extends JComponent {
         Score.score = score;
     }
 
-    public void incrementScore(){
+    public void incrementScore() {
         score++;
     }
 }
