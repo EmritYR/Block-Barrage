@@ -72,6 +72,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
                 player.move("DOWN");
                 break;
             case KeyEvent.VK_ESCAPE:
+                System.out.println(gameThread.getState());
+                if (gameThread.getState().equals(Thread.State.TIMED_WAITING)) {
+                    gameThread.suspend();
+                } else {
+                    gameThread.resume();
+                }
+                break;
+            case KeyEvent.VK_ENTER:
                 break;
         }
     }
@@ -105,7 +113,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             isRunning = false;
     }
 
-    private void blockController(){
+    private void blockController() {
         // Adds New Block to Screen
         if (score % blockSpawnRate == 0) {
             addBlocks();
@@ -154,7 +162,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private void gameRender() {
         clearPanel();
+
         player.draw();
+
         for (Block block : blocks) {
             block.draw();
         }
@@ -189,6 +199,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         if (isRunning) {
             isRunning = false;
         }
+        gameThread.suspend();
     }
 
 //    public void paint(Graphics g) {
