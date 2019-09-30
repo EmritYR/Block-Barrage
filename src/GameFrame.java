@@ -3,6 +3,7 @@ import java.awt.event.*;
 
 public class GameFrame extends JFrame implements ActionListener {
     private GamePanel gamePanel;
+    private ScorePanel scorePanel;
 
     public GameFrame() {
         setSize(400, 600);
@@ -11,6 +12,9 @@ public class GameFrame extends JFrame implements ActionListener {
 
         gamePanel = new GamePanel();
         add(gamePanel, "Center");
+
+        scorePanel = new ScorePanel();
+        add(scorePanel, "North");
 
         JPanel buttonPanel = new JPanel();
 
@@ -36,9 +40,11 @@ public class GameFrame extends JFrame implements ActionListener {
             case "Start Game":
                 gamePanel.requestFocus();
                 gamePanel.startGame();
+                scorePanel.startGame();
                 break;
             case "Stop Game":
                 gamePanel.endGame();
+                scorePanel.endGame();
                 break;
             case "Close":
                 setVisible(false);

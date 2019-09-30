@@ -12,13 +12,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private ArrayList<Block> blocks = new ArrayList<>();
     private Life life = null;
     private Trophy trophy = null;
+    private Score score = new Score();
 
     private final int UPDATE_TIME = Constants.UPDATE_TIME;
     private final int SPAWN_X_BLOCKS = Constants.SPAWN_X_BLOCKS;
     private Thread gameThread;
     private boolean isRunning;
 
-    private int score = 1;
+//    private int score = 1;
     private int updater = 0;
     private int level = 1;
 
@@ -92,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             // Trophy Controller
             trophyController();
 
-            score++;
+            score.incrementScore();
             updater = 0;
         } else {
             updater++;
@@ -104,7 +105,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private void blockController() {
         // Adds New Block to Screen
-        if (score % blockSpawnRate == 0) {
+        if (Score.getScore() % blockSpawnRate == 0) {
             addBlocks();
         }
 
@@ -115,7 +116,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     private void lifeController() {
-        if (score % lifeSpawnRate == 0 && life == null)
+        if (Score.getScore() % lifeSpawnRate == 0 && life == null)
             life = new Life(this, player);
         if (life != null) {
             life.move();
@@ -125,7 +126,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     private void trophyController() {
-        if (score % trophySpawnRate == 0 && trophy == null)
+        if (Score.getScore() % trophySpawnRate == 0 && trophy == null)
             trophy = new Trophy(this, player);
         if (trophy != null) {
             trophy.move();
