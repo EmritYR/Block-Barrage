@@ -22,6 +22,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private int updater = 0;
     private int level = 1;
 
+    private int lifeSpawnRate = Constants.LIFE_SPAWN_RATE;
+    private int trophySpawnRate = Constants.TROPHY_SPAWN_RATE;
+    private int blockSpawnRate = Constants.BLOCK_SPAWN_RATE;
+
     public GamePanel() {
         setBackground(Color.gray);
         addKeyListener(this);
@@ -82,37 +86,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     private void gameUpdate() {
         if (updater == UPDATE_TIME) {
-            // Adds New Block to Screen
-            if (score % 15 == 0) {
-                for (int i = 0; i < SPAWN_X_BLOCKS; i++) {
-                    blocks.add(new Block(this, player));
-                }
-            }
-
-            // Move All Blocks
-            for (Block block : blocks) {
-                block.move();
-            }
+            // Block Updating Controller
+            blockController();
 
             // Extra Life Power UP Controller
-            if (score % 100 == 0 && life == null)
-                life = new Life(this, player);
-            if (life != null) {
-                life.move();
-                if (life.isUsed())
-                    life = null;
-            }
+            lifeController();
 
             // Trophy Controller
-            if (score % 300 == 0 && trophy == null)
-                trophy = new Trophy(this, player);
-            if (trophy != null) {
-                trophy.move();
-                if (trophy.isUsed()) {
-                    trophy = null;
-                    levelUp();
-                }
-            }
+            trophyController();
 
             score++;
             updater = 0;
@@ -122,6 +103,46 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         if (Player.getLives() < 1)
             isRunning = false;
+    }
+
+    private void blockController(){
+        // Adds New Block to Screen
+        if (score % blockSpawnRate == 0) {
+            addBlocks();
+        }
+
+        // Move All Blocks
+        for (Block block : blocks) {
+            block.move();
+        }
+    }
+
+    private void lifeController() {
+        if (score % lifeSpawnRate == 0 && life == null)
+            life = new Life(this, player);
+        if (life != null) {
+            life.move();
+            if (life.isUsed())
+                life = null;
+        }
+    }
+
+    private void trophyController() {
+        if (score % trophySpawnRate == 0 && trophy == null)
+            trophy = new Trophy(this, player);
+        if (trophy != null) {
+            trophy.move();
+            if (trophy.isUsed()) {
+                trophy = null;
+                levelUp();
+            }
+        }
+    }
+
+    private void addBlocks() {
+        for (int i = 0; i < SPAWN_X_BLOCKS; i++) {
+            blocks.add(new Block(this, player));
+        }
     }
 
     public void levelUp() {
@@ -158,9 +179,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         if (gameThread == null) {
             isRunning = true;
             player = new Player(this);
-            for (int i = 0; i < SPAWN_X_BLOCKS; i++) {
-                blocks.add(new Block(this, player));
-            }
+            addBlocks();
             gameThread = new Thread(this);
             gameThread.start();
         }
