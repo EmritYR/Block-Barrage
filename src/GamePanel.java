@@ -58,6 +58,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
                 player.move("RIGHT");
+
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
