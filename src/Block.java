@@ -53,7 +53,6 @@ public class Block {
 
         if (playerHitsBlock()) {
             player.decrementLives();
-            playClip(1);
 
             try {
                 Thread.sleep(3);
@@ -61,30 +60,5 @@ public class Block {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void loadClips() {
-        File audioFile = new File("../sounds/swoosh.wav");
-        try {
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-            AudioFormat format = audioStream.getFormat();
-            DataLine.Info info = new DataLine.Info(Clip.class, format);
-            hitBlockSound = (Clip) AudioSystem.getLine(info);
-            hitBlockSound.open(audioStream);
-        } catch (UnsupportedAudioFileException uafe) {
-            System.out.println("The specified audio file is not supported.");
-            uafe.printStackTrace();
-        } catch (LineUnavailableException lue) {
-            System.out.println("Audio line for playing back is unavailable.");
-            lue.printStackTrace();
-        } catch (IOException ioe) {
-            System.out.println("Error playing the audio file.");
-            ioe.printStackTrace();
-        }
-    }
-
-    public void playClip(int index) {
-        if (index == 1 && hitBlockSound != null)
-            hitBlockSound.start();
     }
 }
