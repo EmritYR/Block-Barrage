@@ -15,9 +15,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private int SPAWN_X_BLOCKS = Constants.SPAWN_X_BLOCKS;
     private Thread gameThread;
     private boolean isRunning;
-    private Dimension dimension = getSize();
     private int updater = 0;
-    private SFX sfx = new SFX();
+    private SFX player_sfx = new SFX();
+    private SFX background_sfx = new SFX();
 
     private int lifeSpawnRate = Constants.LIFE_SPAWN_RATE;
     private int trophySpawnRate = Constants.TROPHY_SPAWN_RATE;
@@ -97,8 +97,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         }
 
         if (Player.getLives() < 1) {
-            sfx.setFile("assets/sounds/game_over.wav");
-            sfx.play(0);
+            player_sfx.setFile("assets/sounds/game_over.wav");
+            player_sfx.play(0);
             isRunning = false;
         }
     }
@@ -190,11 +190,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             addBlocks();
             gameThread = new Thread(this);
             gameThread.start();
+            background_sfx.setFile("assets/sounds/background.wav");
+            background_sfx.loop();
         }
     }
 
     public void endGame() {
         if (isRunning) {
+            background_sfx.stop();
             isRunning = false;
         }
     }
