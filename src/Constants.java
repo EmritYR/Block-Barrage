@@ -29,6 +29,4 @@ public enum Constants {
     public static int SPAWN_X_BLOCKS = 3;
     public static final int INCREMENT_SPAWN_X_BLOCKS = 1;
     public static final int INCREMENT_BLOCK_SPEED = 1;
-
-
 }

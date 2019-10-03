@@ -1,9 +1,6 @@
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.io.File;
-import java.io.IOException;
 import java.util.Random;
 
 public class Block {
@@ -16,8 +13,6 @@ public class Block {
     private Player player;
     private int x;
     private int y;
-
-    private Clip hitBlockSound = null;
 
     public Block(JPanel p, Player py) {
         panel = p;

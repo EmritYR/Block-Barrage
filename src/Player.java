@@ -12,6 +12,7 @@ public class Player {
     private static int lives = 3;
     private int invulnerable = 0;
     private int invulnerableCooldown = Constants.PLAYER_HIT_COOLDOWN;
+    private SFX sfx = new SFX();
 
     private int x;
     private int y;
@@ -68,6 +69,8 @@ public class Player {
         if (invulnerable == 0) {
             lives--;
             invulnerable = invulnerableCooldown;
+            sfx.setFile("assets/sounds/block_bump.wav");
+            sfx.play(0);
         } else {
             invulnerable--;
         }

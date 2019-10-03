@@ -16,8 +16,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Thread gameThread;
     private boolean isRunning;
     private Dimension dimension = getSize();
-
     private int updater = 0;
+    private SFX sfx = new SFX();
 
     private int lifeSpawnRate = Constants.LIFE_SPAWN_RATE;
     private int trophySpawnRate = Constants.TROPHY_SPAWN_RATE;
@@ -96,8 +96,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             updater++;
         }
 
-        if (Player.getLives() < 1)
+        if (Player.getLives() < 1) {
+            sfx.setFile("assets/sounds/game_over.wav");
+            sfx.play(0);
             isRunning = false;
+        }
     }
 
     private void blockController() {

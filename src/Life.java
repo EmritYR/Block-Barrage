@@ -6,6 +6,7 @@ import java.util.Random;
 public class Life {
     private static final int SPEED = Constants.LIFE_SPEED;
     private static final int SIDE_SIZE = Constants.LIFE_SIZE;
+    private SFX sfx = new SFX();
 
     private JPanel panel;
     private Player player;
@@ -48,6 +49,8 @@ public class Life {
         if (playerHitsLife() && !used) {
             player.incrementLives();
             used = true;
+            sfx.setFile("assets/sounds/life_up.wav");
+            sfx.play(0);
 
             try {
                 Thread.sleep(1);
