@@ -86,8 +86,8 @@ public class Player {
         switch (direction) {
             case "UP":
                 y = y - SPEED;
-                if (y < 0)
-                    y = 0;
+                if (y < (SIDE_SIZE* lives + (SIDE_SIZE*lives)/3))
+                    y = (SIDE_SIZE* lives + (SIDE_SIZE*lives)/3);
                 break;
             case "LEFT":
                 x = x - SPEED;
@@ -100,9 +100,10 @@ public class Player {
                     y = dimension.height - SPEED;
                 break;
             case "RIGHT":
+                System.out.println(x);
                 x = x + SPEED;
-                if (x + SPEED >= dimension.width)
-                    x = dimension.width - SPEED;
+                if (x + SPEED >= dimension.width- SIDE_SIZE)
+                    x = dimension.width - SPEED - SIDE_SIZE;
                 break;
         }
     }
