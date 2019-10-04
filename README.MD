@@ -1,7 +1,8 @@
 # Block Barrage
 
 COMP 3609 - Game Programming Assignment 1.   
-Building a game using java.
+Building a game using java.  
+[Github Repo](https://github.com/EmritYR/Block-Barrage)
 
 ### Prerequisites
 
