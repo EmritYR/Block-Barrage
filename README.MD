@@ -15,6 +15,17 @@ Import JAVA Project and run main method of the GameViewer Class <br/><br/>
 **_Important Notes:_** If compiling through the command line, assets folder may not be visible depending on java version and command arguments. 
 Recommended to import project in an IDE and then execute. 
 
+### Controls
+W/Arrow_Up - Move Up
+A/Arrow_Left - Move Left
+S/Arrow_Down - Move Down
+D/Arrow_Right - Move Right
+
+### Gameplay
+* Avoid grey blocks moving up.
+* Collect red life power ups for additional lives.
+* Try to get the highest score you can.
+
 ## Built With
 
 Intellij Ultimate v2019.2.1 <br/>
