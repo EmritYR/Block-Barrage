@@ -24,6 +24,8 @@ D/Arrow_Right - Move Right
 ### Gameplay
 * Avoid grey blocks moving up.
 * Collect red life power ups for additional lives.
+* Collect yellow trophies to level up.
+* Levels get progressively harder.
 * Try to get the highest score you can.
 
 ## Built With
