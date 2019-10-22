@@ -1,7 +1,8 @@
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Graphics2D;
+import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.geom.Rectangle2D;
-import java.util.PrimitiveIterator;
 
 public class Trophy {
     private static final int SIZE = Constants.TROPHY_SIZE;

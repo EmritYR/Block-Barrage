@@ -1,4 +1,5 @@
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 public class ScorePanel extends JPanel implements Runnable {
     private Thread scoreThread;

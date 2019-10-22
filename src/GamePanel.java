@@ -1,8 +1,12 @@
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Dimension;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import javax.swing.*;
+import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Player player;

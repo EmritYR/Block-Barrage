@@ -1,4 +1,4 @@
-import javax.swing.*;
+import javax.swing.JComponent;
 
 public class Score extends JComponent {
     private static int score = 1;
