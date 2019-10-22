@@ -3,12 +3,14 @@ import java.awt.Graphics2D;
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 
 
 public class Player {
     private JPanel panel;
     private Dimension dimension;
     private Graphics2D g2;
+    private BufferedImage image;
 
     private static final int SIDE_SIZE = Constants.PLAYER_SIZE;
     private static final int SPEED = Constants.PLAYER_SPEED;
@@ -24,6 +26,8 @@ public class Player {
     public Player(JPanel p) {
         panel = p;
         g2 = (Graphics2D) panel.getGraphics();
+
+        image = ImageLoader.loadImage("assets/images/player_head.png");
 
         dimension = panel.getSize();
         x = (dimension.width / 2);
@@ -54,6 +58,7 @@ public class Player {
 
         for (int i = 1; i <= lives; i++) {
             g2.fill(new Rectangle2D.Double(x, y - (SIDE_SIZE * i) - (SIDE_SIZE * i / 3.0), SIDE_SIZE, SIDE_SIZE));
+//            g2.drawImage(image, x, y, SIDE_SIZE, SIDE_SIZE, null);
         }
 
 //         Show Collision Boundary
